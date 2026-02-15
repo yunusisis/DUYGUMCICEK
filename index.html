@@ -132,14 +132,19 @@
       background: #ddd;
     }
 
-    .hero-img {
-      width: 100%;
-      height: 460px;
-      object-fit: cover;
-      display: block;
-      filter: saturate(1.05);
-    }
-
+ .hero-img{
+  width:100%;
+  height:460px;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+@media (max-width: 991px){
+  .hero-img{
+    height:520px;            /* mobil yükseklik */
+    object-position: top;    /* mobilde üstten odak */
+  }
+}
     .hero-card {
       position: absolute;
       left: 18px;
@@ -420,26 +425,76 @@
         transform: none;
       }
     }
+    .hero-bg{
+  background-image: url("assets/img/hero-desktop.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 460px;
+}
+
+@media (max-width: 991px){
+  .hero-bg{
+    background-image: url("assets/img/hero-mobile.jpg");
+    min-height: 520px;
+  }
+}
+/* Mobil düzen */
+@media (max-width: 768px) {
+
+  /* Üst satır scrollable */
+  .topbar-info {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .topbar-info .pill {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .topbar-info::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Alt satır butonlar tam genişlik */
+  .topbar-actions {
+    width: 100%;
+  }
+
+  .topbar-actions .btn {
+    flex: 1;
+  }
+}
+
+
   </style>
 </head>
 <body>
   <!-- TOPBAR -->
-  <div class="topbar py-2">
-    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
-      <div class="d-flex flex-wrap gap-2 align-items-center">
-        <span class="pill"><i class="bi bi-geo-alt"></i> Silopi Devlet Hastanesi karşısı</span>
-        <span class="pill"><i class="bi bi-truck"></i> Aynı gün teslimat</span>
-        <span class="pill"><i class="bi bi-clock"></i> 09:00 - 22:00</span>
-      </div>
-      <div class="d-flex gap-2">
-        <a class="btn btn-sm btn-outline-dark" href="tel:+905339210484"><i class="bi bi-telephone"></i> Ara</a>
-        <a class="btn btn-sm btn-dark" target="_blank" rel="noopener"
-          href="https://wa.me/905339210484?text=Merhaba%20Duygum%20%C3%87i%C3%A7ek%C3%A7ilik%20(Silopi)%20i%C3%A7in%20%C3%A7i%C3%A7ek%20sipari%C5%9Fi%20vermek%20istiyorum.">
-          <i class="bi bi-whatsapp"></i> WhatsApp
-        </a>
-      </div>
+<div class="topbar py-2">
+  <div class="container">
+
+    <!-- ÜST SATIR -->
+    <div class="topbar-info d-flex gap-2 align-items-center mb-2">
+      <span class="pill"><i class="bi bi-truck"></i> Aynı gün teslimat</span>
+      <span class="pill"><i class="bi bi-clock"></i> 09:00 - 22:00</span>
     </div>
+
+    <!-- ALT SATIR -->
+    <div class="topbar-actions d-flex gap-2">
+      <a class="btn btn-sm btn-outline-dark" href="tel:+90TEL">
+        <i class="bi bi-telephone"></i> Ara
+      </a>
+      <a class="btn btn-sm btn-dark" target="_blank"
+         href="https://wa.me/905339210484">
+        <i class="bi bi-whatsapp"></i> WhatsApp
+      </a>
+    </div>
+
   </div>
+</div>
+
   <!-- NAV -->
   <nav class="navbar navbar-expand-lg bg-white sticky-top border-bottom">
     <div class="container">
@@ -473,8 +528,19 @@
   <!-- HERO -->
   <section class="hero" id="top">
     <div class="container">
-      <div class="hero-wrap">
-        <img class="hero-img" src="DuygumÇiçekçilik.jpg" alt="Duygum Çiçekçilik Silopi çiçekçi" loading="lazy" />
+      <div class="hero-wrap hero-bg">
+      <picture>
+  <!-- Mobilde tamamen farklı görsel -->
+  <source media="(max-width: 768px)" srcset="hero-mobile.jpg">
+
+  <!-- Desktop görsel -->
+  <img class="hero-img"
+       src="DuygumÇiçekçilik.jpg"
+       alt="Duygum Çiçekçilik Silopi çiçekçi"
+       loading="lazy">
+</picture>
+
+
       </div>
     </div>
   </section>
